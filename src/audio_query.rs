@@ -4,7 +4,7 @@ use reqwest::Result;
 
 pub struct AudioQuery {
     restapi: RestAPI,
-    audio_query: AudioQueryType,
+    pub audio_query: AudioQueryType,
 }
 
 impl AudioQuery {
