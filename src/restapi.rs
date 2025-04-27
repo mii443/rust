@@ -1,4 +1,4 @@
-use crate::types::audio_query::AudioQueryType;
+use crate::types::{audio_query::AudioQueryType, speaker::Speaker};
 use bytes::Bytes;
 use reqwest::{header::HeaderMap, Client, RequestBuilder, Result};
 
@@ -61,5 +61,15 @@ impl RestAPI {
             .bytes()
             .await?;
         Ok(data)
+    }
+
+    pub async fn speakers(&self) -> Result<Vec<Speaker>> {
+        let speakers = self
+            .request("GET", "/speakers")
+            .send()
+            .await?
+            .json()
+            .await?;
+        Ok(speakers)
     }
 }
